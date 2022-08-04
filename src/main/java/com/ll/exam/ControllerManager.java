@@ -28,7 +28,7 @@ public class ControllerManager {
             Method[] methods = controllerCls.getDeclaredMethods();
 
             for (Method method : methods) {
-                GetMapping getMapping = method.getAnnotation(GetMapping.class);
+                PostMapping postMapping = method.getAnnotation(PostMapping.class);
 
                 String httpMethod = null;
                 String path = null;
@@ -36,6 +36,9 @@ public class ControllerManager {
                 if (getMapping != null) {
                     path = getMapping.value();
                     httpMethod = "GET";
+                }else if (postMapping != null) {
+                    path = postMapping.value();
+                    httpMethod = "POST";
                 }
 
                 if (path != null && httpMethod != null) {
