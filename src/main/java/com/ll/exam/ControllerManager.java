@@ -2,6 +2,7 @@ package com.ll.exam;
 
 import com.ll.exam.annotation.Controller;
 import com.ll.exam.annotation.GetMapping;
+import com.ll.exam.annotation.PostMapping;
 import com.ll.exam.mymap.MyMap;
 import com.ll.exam.util.Ut;
 import jakarta.servlet.http.HttpServletRequest;
@@ -28,6 +29,7 @@ public class ControllerManager {
             Method[] methods = controllerCls.getDeclaredMethods();
 
             for (Method method : methods) {
+                GetMapping getMapping = method.getAnnotation(GetMapping.class);
                 PostMapping postMapping = method.getAnnotation(PostMapping.class);
 
                 String httpMethod = null;
