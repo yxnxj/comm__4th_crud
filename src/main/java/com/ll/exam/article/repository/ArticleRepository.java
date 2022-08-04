@@ -74,4 +74,15 @@ public class ArticleRepository {
 
         sql.update();
     }
+
+    public ArticleDto getPrevArticle(long id) {
+        SecSql sql = myMap.genSecSql();
+        sql
+                .append("SELECT *")
+                .append("FROM article")
+                .append("WHERE id < ?", id)
+                .append("ORDER BY id DESC")
+                .append("LIMIT 1");
+        return sql.selectRow(ArticleDto.class);
+    }
 }
