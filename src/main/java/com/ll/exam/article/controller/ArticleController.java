@@ -62,6 +62,12 @@ public class ArticleController {
             rq.historyBack("해당 글이 존재하지 않습니다.");
             return;
         }
+        ArticleDto prevArticleDto = articleService.getPrevArticle(articleDto.getId());
+        ArticleDto nextArticleDto = articleService.getNextArticle(articleDto.getId());
+
+        rq.setAttr("prevArticle", prevArticleDto);
+        rq.setAttr("nextArticle", nextArticleDto);
+
 
         rq.setAttr("article", articleDto);
         rq.view("usr/article/detail");
